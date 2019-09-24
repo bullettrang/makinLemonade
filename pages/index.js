@@ -49,7 +49,7 @@ const Index = props => {
               <h1>{product.handle}</h1>
               <h2>{product.description}</h2>
               <img src={product.images[0].src} />
-              <div>{product.variants[0].price}</div>
+              <div>{`$ ${product.variants[0].price}`}</div>
               <SizeSelector options={product.options}/>
             </div>
           );
