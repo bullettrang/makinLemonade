@@ -41,6 +41,8 @@ class MyApp extends App {
       });
   }
 
+
+
   render() {
     const { products } = this.state;
     const { Component, pageProps } = this.props; //Next's App has a component prop
@@ -49,7 +51,6 @@ class MyApp extends App {
         {" "}
         {/*Consists of Head */}
         <Component products={products} client={client} {...pageProps} />{" "}
-        {/*This could be index.js, sell.js, etc */}
       </Page>
     );
   }
