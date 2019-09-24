@@ -41,6 +41,8 @@ class MyApp extends App {
       });
   }
 
+
+
   render() {
     const { products } = this.state;
     const { Component, pageProps } = this.props; //Next's App has a component prop

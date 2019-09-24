@@ -1,4 +1,4 @@
-
+import {useState} from 'react';
 import styled from "styled-components";
 import LandingStyled from '../components/styles/Landing';
 import CurvedText from '../components/styles/CurvedText';
@@ -19,8 +19,15 @@ const GalleryWrapper = styled.div`
 
 const SizeSelector = (props)=>{
   //needs onChange Handler
+  const [size,setSize] = useState(props.options[0].values[0].value);
+
+  const sizeChangeHandler = (event)=>{
+    console.log('this fired!');
+
+    setSize(event.target.value);
+  }
   return(
-    <select>
+    <select onChange={sizeChangeHandler} value={size} id="size">
       {props.options[0].values.map((value)=>{
       return  (<option key={value.value} value={value.value}>{value.value}</option>);
       })}
