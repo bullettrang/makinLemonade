@@ -49,7 +49,6 @@ class MyApp extends App {
         {" "}
         {/*Consists of Head */}
         <Component products={products} client={client} {...pageProps} />{" "}
-        {/*This could be index.js, sell.js, etc */}
       </Page>
     );
   }

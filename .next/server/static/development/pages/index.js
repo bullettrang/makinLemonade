@@ -93,10 +93,10 @@ module.exports =
 /************************************************************************/
 /******/ ({
 
-/***/ "./pages/index.js":
-/*!************************!*\
-  !*** ./pages/index.js ***!
-  \************************/
+/***/ "./components/styles/CurvedText.js":
+/*!*****************************************!*\
+  !*** ./components/styles/CurvedText.js ***!
+  \*****************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -104,18 +104,65 @@ module.exports =
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! styled-components */ "styled-components");
-/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(styled_components__WEBPACK_IMPORTED_MODULE_1__);
-var _jsxFileName = "/Users/briantrang/brandon-lemon/pages/index.js";
+var _jsxFileName = "/Users/briantrang/brandon-lemon/components/styles/CurvedText.js";
 
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
-//import { useEffect } from "react";
 
-const LandingStyled = styled_components__WEBPACK_IMPORTED_MODULE_1___default.a.div`
+const CurvedText = () => {
+  return __jsx("svg", {
+    viewBox: "0 0 500 500",
+    className: "Curved__Wrapper",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 4
+    },
+    __self: undefined
+  }, __jsx("path", {
+    id: "curve",
+    d: "M73.2,148.6c4-6.1,65.5-96.8,178.6-95.6c111.3,1.2,170.8,90.3,175.1,97",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 5
+    },
+    __self: undefined
+  }), __jsx("text", {
+    width: "500",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 9
+    },
+    __self: undefined
+  }, __jsx("textPath", {
+    className: "Landing--Text",
+    xlinkHref: "#curve",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 10
+    },
+    __self: undefined
+  }, "Hardship Community Struggle")));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (CurvedText);
+
+/***/ }),
+
+/***/ "./components/styles/Landing.js":
+/*!**************************************!*\
+  !*** ./components/styles/Landing.js ***!
+  \**************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! styled-components */ "styled-components");
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(styled_components__WEBPACK_IMPORTED_MODULE_0__);
+
+const LandingStyled = styled_components__WEBPACK_IMPORTED_MODULE_0___default.a.div`
     width:100%;
     height:100vh;
     background: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.35)),${props => props.backgroundImage};
-    /* background: ${props => props.backgroundImage}; */
     background-size:cover;
     background-repeat:no-repeat;
     position:relative;
@@ -140,49 +187,30 @@ const LandingStyled = styled_components__WEBPACK_IMPORTED_MODULE_1___default.a.d
         font-weight:800;
     }
 `;
-const LandingTitle = styled_components__WEBPACK_IMPORTED_MODULE_1___default.a.h1`
-  font-family: sans-serif;
-  color: white;
-  position: absolute;
-  text-transform: uppercase;
-  top: ${props => props.top};
-  left: ${props => props.left};
-`;
+/* harmony default export */ __webpack_exports__["default"] = (LandingStyled);
 
-const CurvedText = () => {
-  return __jsx("svg", {
-    viewBox: "0 0 500 500",
-    className: "Curved__Wrapper",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 46
-    },
-    __self: undefined
-  }, __jsx("path", {
-    id: "curve",
-    d: "M73.2,148.6c4-6.1,65.5-96.8,178.6-95.6c111.3,1.2,170.8,90.3,175.1,97",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 47
-    },
-    __self: undefined
-  }), __jsx("text", {
-    width: "500",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 51
-    },
-    __self: undefined
-  }, __jsx("textPath", {
-    className: "Landing--Text",
-    xlinkHref: "#curve",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 52
-    },
-    __self: undefined
-  }, "Hardship Community Struggle")));
-};
+/***/ }),
+
+/***/ "./pages/index.js":
+/*!************************!*\
+  !*** ./pages/index.js ***!
+  \************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! styled-components */ "styled-components");
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(styled_components__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _components_styles_Landing__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/styles/Landing */ "./components/styles/Landing.js");
+/* harmony import */ var _components_styles_CurvedText__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/styles/CurvedText */ "./components/styles/CurvedText.js");
+var _jsxFileName = "/Users/briantrang/brandon-lemon/pages/index.js";
+
+var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
+
+
 
 const GalleryWrapper = styled_components__WEBPACK_IMPORTED_MODULE_1___default.a.div`
   display: grid;
@@ -194,6 +222,27 @@ const GalleryWrapper = styled_components__WEBPACK_IMPORTED_MODULE_1___default.a.
   }
 `;
 
+const SizeSelector = props => {
+  //needs onChange Handler
+  return __jsx("select", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 23
+    },
+    __self: undefined
+  }, props.options[0].values.map(value => {
+    return __jsx("option", {
+      key: value.value,
+      value: value.value,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 25
+      },
+      __self: undefined
+    }, value.value);
+  }));
+};
+
 const Index = props => {
   const {
     products
@@ -201,26 +250,26 @@ const Index = props => {
   return __jsx("div", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 73
+      lineNumber: 34
     },
     __self: undefined
-  }, __jsx(LandingStyled, {
+  }, __jsx(_components_styles_Landing__WEBPACK_IMPORTED_MODULE_2__["default"], {
     backgroundImage: `url(${"/static/icecream.jpg"})`,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 74
+      lineNumber: 35
     },
     __self: undefined
-  }, __jsx(CurvedText, {
+  }, __jsx(_components_styles_CurvedText__WEBPACK_IMPORTED_MODULE_3__["default"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 84
+      lineNumber: 36
     },
     __self: undefined
   })), __jsx(GalleryWrapper, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 86
+      lineNumber: 38
     },
     __self: undefined
   }, products.map(product => {
@@ -228,35 +277,42 @@ const Index = props => {
       key: product.id,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 89
+        lineNumber: 41
       },
       __self: undefined
     }, __jsx("h1", {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 90
+        lineNumber: 42
       },
       __self: undefined
     }, product.handle), __jsx("h2", {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 91
+        lineNumber: 43
       },
       __self: undefined
     }, product.description), __jsx("img", {
       src: product.images[0].src,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 92
+        lineNumber: 44
       },
       __self: undefined
     }), __jsx("div", {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 93
+        lineNumber: 45
       },
       __self: undefined
-    }, product.variants[0].price));
+    }, product.variants[0].price), __jsx(SizeSelector, {
+      options: product.options,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 46
+      },
+      __self: undefined
+    }));
   })));
 };
 
