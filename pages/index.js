@@ -39,8 +39,8 @@ const Index = props => {
   const { products } = props;
   return (
     <div>
-      <LandingStyled backgroundImage={`url(${"/static/icecream.jpg"})`}>
-        <CurvedText />
+      <LandingStyled backgroundImage={`url(${"/static/landing-main.png"})`}>
+        {/* <CurvedText /> */}
       </LandingStyled>
       <GalleryWrapper>
         {products.map(product => {
