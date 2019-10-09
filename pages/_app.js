@@ -21,8 +21,9 @@ class MyApp extends App {
     };
   }
   componentDidMount() {
+    //create empty checkout
     client.checkout.create().then(res => {
-      //console.log(res);
+      
       this.setState({
         checkout: res
       });
@@ -30,7 +31,7 @@ class MyApp extends App {
 
     client.product.fetchAll().then(products => {
       // Do something with the products
-      console.log(products);
+      
       this.setState({ products: products });
     });
 
@@ -42,15 +43,22 @@ class MyApp extends App {
   }
 
 
+  cartHandler =()=>{
+    this.setState(prevState=>{
+      return {isCartOpen:!prevState.isCartOpen}
+    });
+    
+  }
+
 
   render() {
-    const { products } = this.state;
+    const { products,isCartOpen } = this.state;
     const { Component, pageProps } = this.props; //Next's App has a component prop
     return (
       <Page>
         {" "}
         {/*Consists of Head */}
-        <Component products={products} client={client} {...pageProps} />{" "}
+        <Component isCartOpen={isCartOpen} cartHandler={this.cartHandler} products={products} client={client} {...pageProps} />{" "}
       </Page>
     );
   }

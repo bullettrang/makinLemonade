@@ -11,6 +11,7 @@ const LandingStyled = styled.div`
   background-position:0 30%;
   position: relative;
   pointer-events: none;
+  margin-bottom:calc(5vmin);
   .Curved__Wrapper {
     position: relative;
     transform: rotate(5deg);
