@@ -2,7 +2,7 @@ import { useState } from "react";
 import styled from "styled-components";
 import LandingStyled from "../components/styles/Landing";
 //import CurvedText from '../components/styles/CurvedText';
-import CartStyled from "../components/styles/Cart";
+import Cart from "../components/styles/Cart";
 import ShopperOptions from "../components/styles/ShopperOptions";
 
 const GalleryWrapper = styled.div`
@@ -20,7 +20,7 @@ const SizeSelector = props => {
   const [size, setSize] = useState(props.variants[0].title);
 
   const sizeChangeHandler = event => {
-    console.log("this fired!");
+    console.log(event.target.value," this fired!");
     setSize(event.target.value);
   };
   return (
@@ -40,7 +40,7 @@ const QuantitySelector = props => {
   const [quantity, setquantity] = useState(0);
 
   const quantityChangeHandler = event => {
-    console.log("this fired!");
+    //console.log("this fired!");
     setquantity(event.target.value);
   };
   return (
@@ -63,7 +63,7 @@ const Index = props => {
       <LandingStyled backgroundImage={`url(${"/static/landing-main.png"})`}>
         
       </LandingStyled>
-      {isCartOpen? <CartStyled/>:null}
+      {isCartOpen? <Cart/>:null}
       <GalleryWrapper>
         {products.map(product => {
           return product.availableForSale ? (

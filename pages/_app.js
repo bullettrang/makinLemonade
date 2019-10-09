@@ -8,6 +8,17 @@ const client = Client.buildClient({
   domain: "makinlemonade.myshopify.com"
 });
 
+
+// this.state = {
+//   isCartOpen: false,
+//   checkout: { lineItems: [] },
+//   products: [],
+//   shop: {}
+// };
+
+// this.addVariantToCart = this.addVariantToCart.bind(this);
+// this.updateQuantityInCart = this.updateQuantityInCart.bind(this);
+// this.removeLineItemInCart = this.removeLineItemInCart.bind(this);
 class MyApp extends App {
   //next provides an App automatically, but we made our own called MyApp
   constructor() {
@@ -42,6 +53,21 @@ class MyApp extends App {
       });
   }
 
+  addVariantToCart(variantId, quantity){
+    this.setState({
+      isCartOpen: true,
+    });
+
+    const lineItemsToAdd = [{variantId, quantity: parseInt(quantity, 10)}]
+    const checkoutId = this.state.checkout.id
+
+    return this.props.client.checkout.addLineItems(checkoutId, lineItemsToAdd).then(res => {
+      this.setState({
+        checkout: res,
+      });
+    });
+  }
+
 
   cartHandler =()=>{
     this.setState(prevState=>{
@@ -58,7 +84,7 @@ class MyApp extends App {
       <Page>
         {" "}
         {/*Consists of Head */}
-        <Component isCartOpen={isCartOpen} cartHandler={this.cartHandler} products={products} client={client} {...pageProps} />{" "}
+        <Component addVariantToCart={this.addVariantToCart} isCartOpen={isCartOpen} cartHandler={this.cartHandler} products={products} client={client} {...pageProps} />{" "}
       </Page>
     );
   }
