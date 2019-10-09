@@ -3,24 +3,15 @@ import styled from "styled-components";
 import LandingStyled from "../components/styles/Landing";
 //import CurvedText from '../components/styles/CurvedText';
 import Cart from "../components/styles/Cart";
-import ShopperOptions from "../components/styles/ShopperOptions";
-
-const GalleryWrapper = styled.div`
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  justify-items: center;
-
-  img {
-    width: 250px;
-  }
-`;
+import GalleryWrapper from "../components/styles/Gallery";
+import ProductOptions from "../components/styles/ShopperOptions";
 
 const SizeSelector = props => {
-  //needs onChange Handler
+  //default variant is the first one
   const [size, setSize] = useState(props.variants[0].title);
 
   const sizeChangeHandler = event => {
-    console.log(event.target.value," this fired!");
+    console.log(event.target.value, " this fired!");
     setSize(event.target.value);
   };
   return (
@@ -45,25 +36,21 @@ const QuantitySelector = props => {
   };
   return (
     <>
-    <label htmlFor="qty">
-      Quantity
-    </label>
-    <input id="qty" type="number" min="0" max="10" placeholder="0"/>
+      <label htmlFor="qty">Quantity</label>
+      <input id="qty" type="number" min="0" max="10" placeholder="0" />
     </>
   );
 };
 
-
-
 const Index = props => {
-  const { products,cartHandler,isCartOpen } = props;
+  const { products, cartHandler, isCartOpen, addVariantToCart } = props;
   //console.log(products)
   return (
     <div>
-      <LandingStyled backgroundImage={`url(${"/static/landing-main.png"})`}>
-        
-      </LandingStyled>
-      {isCartOpen? <Cart/>:null}
+      <LandingStyled
+        backgroundImage={`url(${"/static/landing-main.png"})`}
+      ></LandingStyled>
+      {isCartOpen ? <Cart cartHandler={cartHandler} /> : null}
       <GalleryWrapper>
         {products.map(product => {
           return product.availableForSale ? (
@@ -72,11 +59,11 @@ const Index = props => {
               <h2>{product.description}</h2>
               <img src={product.images[0].src} />
               <div>{`$ ${product.variants[0].price}`}</div>
-              <ShopperOptions>
-                <SizeSelector variants={product.variants} />
-                <QuantitySelector options={product.options} />
-                <button onClick={cartHandler}>Add to Cart</button>
-              </ShopperOptions>
+              <ProductOptions
+                addVariantToCart={addVariantToCart}
+                variants={product.variants}
+                options={product.options}
+              />
             </div>
           ) : null;
         })}

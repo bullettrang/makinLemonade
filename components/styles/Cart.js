@@ -1,8 +1,6 @@
 import styled from "styled-components";
 
-// openCheckout() {
-//   window.open(this.props.checkout.webUrl);
-// }
+//todo : add close button to cart
 
 const CartStyled = styled.div`
   position: fixed;
@@ -36,9 +34,19 @@ const Taxes = styled.div`
 const Total = styled.div`
   font-family: sans-serif;
 `;
+
+const CloseButton = styled.span`
+  position:absolute;
+  left:75%;
+  color:pink;
+  background-color:orange;
+  padding:1em;
+  cursor: pointer;
+`;
 const Cart = props => {
   return (
     <CartStyled>
+      <CloseButton onClick={props.cartHandler}>X</CloseButton>
       <SubTotal>
         <h2>SubTotal</h2>
         <span>{props.subTotal}</span>
