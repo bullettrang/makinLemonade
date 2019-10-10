@@ -4,8 +4,6 @@ import styled from "styled-components";
 
 const SizeSelector = ({size,setSize,variants}) => {
     //default variant is the first one
-
-  
     const sizeChangeHandler = event => {
       //console.log(event.target.value," this fired!");
       setSize(event.target.value);
@@ -22,27 +20,44 @@ const SizeSelector = ({size,setSize,variants}) => {
       </select>
     );
   };
+
+  const QuantityWrapper=styled.div`
+    display:flex;
+    flex-direction:row;
+  `;
   
-  const QuantitySelector = ({setQuantity}) => {
+  const QuantitySelector = ({quantity,setQuantity}) => {
     
     const quantityChangeHandler = event => {
       //console.log("this fired!");
       setQuantity(event.target.value);
     };
+
+    const quantityAdd =()=>{
+        setQuantity(quantity+1);
+    }
+
+    const quantityRemove =()=>{
+        if(quantity===0){
+            return;
+        }
+        setQuantity(quantity-1);
+    }
     return (
-      <>
+      <QuantityWrapper>
       <label htmlFor="qty">
-        Quantity
-      </label>
-      <input id="qty" type="number" min="0" max="10" placeholder="0" onChange={quantityChangeHandler}/>
-      </>
+        QTY 
+        </label>
+        <button onClick={quantityRemove}>-</button><span>{quantity}</span><button onClick={quantityAdd}>+</button>
+      </QuantityWrapper>
     );
   };
 
 const ShopperOptions = styled.div`
     display:flex;
     justify-content:space-around;
-
+    flex-direction:column;
+    font-family:sans-serif;
     #qty{
         border-radius:5px;
     }
@@ -55,7 +70,7 @@ const ProductOptions=({variants,addVariantToCart})=>{
     return(
         <ShopperOptions>
             <SizeSelector size={size} variants={variants} setSize={setSize}/>
-            <QuantitySelector setQuantity={setQuantity}/>
+            <QuantitySelector quantity={quantity} setQuantity={setQuantity}/>
             <button onClick={()=>addVariantToCart(size,quantity)}>Add to Cart</button>
         </ShopperOptions>
     )

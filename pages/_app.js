@@ -72,6 +72,16 @@ class MyApp extends App {
       });
   }
 
+  removeLineItemInCart=(lineItemId)=> {
+    const checkoutId = this.state.checkout.id
+
+    return client.checkout.removeLineItems(checkoutId, [lineItemId]).then(res => {
+      this.setState({
+        checkout: res,
+      });
+    });
+  }
+
   cartHandler = () => {
     this.setState(prevState => {
       return { isCartOpen: !prevState.isCartOpen };
@@ -86,6 +96,7 @@ class MyApp extends App {
         {/*Consists of Head */}
         <Component
           addVariantToCart={this.addVariantToCart}
+          removeLineItemInCart={this.removeLineItemInCart}
           isCartOpen={isCartOpen}
           cartHandler={this.cartHandler}
           products={products}

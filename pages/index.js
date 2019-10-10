@@ -8,14 +8,14 @@ import ProductOptions from "../components/styles/ShopperOptions";
 
 
 const Index = props => {
-  const { products, cartHandler, isCartOpen, addVariantToCart,checkout } = props;
+  const { products, cartHandler, isCartOpen, addVariantToCart,checkout,removeLineItemInCart } = props;
   //console.log(products)
   return (
     <div>
       <LandingStyled
         backgroundImage={`url(${"/static/landing-main.png"})`}
       ></LandingStyled>
-      {isCartOpen ? <Cart checkout={checkout} cartHandler={cartHandler} /> : null}
+      {isCartOpen ? <Cart checkout={checkout} cartHandler={cartHandler} removeLineItemInCart={removeLineItemInCart} /> : null}
       <GalleryWrapper>
         {products.map(product => {
           return product.availableForSale ? (

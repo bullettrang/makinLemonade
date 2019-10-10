@@ -48,7 +48,7 @@ const CartImage = styled.img`
 `
 const Cart = props => {
   const { subtotalPrice, totalPrice, totalTax, lineItems } = props.checkout;
-  console.log(lineItems)
+  const {removeLineItemInCart} = props;
   const renderLineItems = () => {
     return lineItems.map(lineItem => {
       return (
@@ -59,6 +59,7 @@ const Cart = props => {
           <div>{lineItem.title}</div>
           <div>QTY: {lineItem.quantity}</div>
           <div>${(lineItem.quantity * lineItem.variant.price).toFixed(2)}</div>
+          <button onClick={()=>removeLineItemInCart(lineItem.id)}>X</button>
         </li>
       );
     });
