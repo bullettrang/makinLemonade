@@ -9,8 +9,6 @@ const CartStyled = styled.div`
   height: 100%;
   width: 350px;
   background-color: white;
-  display: flex;
-  flex-direction: column;
   border-left: 1px solid #e5e5e5;
   /* transform: translateX(100%); */
   transform: translateX(0%);
@@ -44,30 +42,54 @@ const CloseButton = styled.span`
 `;
 
 const CartImage = styled.img`
-  max-width:50px;
-`
+  max-width: 50px;
+`;
+
+const LineItem = styled.div`
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  grid-gap: 20px;
+  padding:calc(3vmin);
+  border-bottom: 1px solid rgb(118, 178, 81);
+  .lineItem--qty{
+    grid-column-start:1;
+    grid-column-end:2;
+  }
+
+.line--delete{
+  width:25px;
+  height:25px;
+  border-radius:3px;
+  box-shadow: 0px 1px 2px 0px;
+  position:relative;
+  left:-65%;
+}
+
+`;
+
 const Cart = props => {
   const { subtotalPrice, totalPrice, totalTax, lineItems } = props.checkout;
-  const {removeLineItemInCart} = props;
+  const { removeLineItemInCart } = props;
   const renderLineItems = () => {
     return lineItems.map(lineItem => {
       return (
-        <li key={lineItem.id}>
+        <LineItem key={lineItem.id}>
           {lineItem.variant.image && (
             <CartImage src={lineItem.variant.image.src} alt={lineItem.title} />
           )}
-          <div>{lineItem.title}</div>
-          <div>QTY: {lineItem.quantity}</div>
-          <div>${(lineItem.quantity * lineItem.variant.price).toFixed(2)}</div>
-          <button onClick={()=>removeLineItemInCart(lineItem.id)}>X</button>
-        </li>
+          <button className="line--delete" onClick={() => removeLineItemInCart(lineItem.id)}>X</button>
+          <div className="lineItem--title"> {lineItem.variant.title} {lineItem.title} </div>
+          {/* <div className="lineItem--variant-title"></div> */}
+          <div className="lineItem--qty">QTY: {lineItem.quantity}</div>
+          <div className="lineItem--total">${(lineItem.quantity * lineItem.variant.price).toFixed(2)}</div>
+        </LineItem>
       );
     });
   };
   return (
     <CartStyled>
       <CloseButton onClick={props.cartHandler}>X</CloseButton>
-      <ul>{renderLineItems()}</ul>
+      {renderLineItems()}
       <SubTotal>
         <h2>SubTotal</h2>
         <span>${subtotalPrice}</span>

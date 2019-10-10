@@ -30,6 +30,7 @@ const LandingStyled = styled.div`
     text-transform: uppercase;
     letter-spacing: 0.45rem;
     font-weight: 800;
+    
   }
 `;
 
