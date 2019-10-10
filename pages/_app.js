@@ -51,6 +51,11 @@ class MyApp extends App {
     });
   }
 
+  openCheckout=()=> {
+    window.open(this.props.checkout.webUrl);
+  }
+
+
   addVariantToCart= (variantId, quantity)=> {
     this.setState({
       isCartOpen: true
@@ -74,7 +79,7 @@ class MyApp extends App {
   };
 
   render() {
-    const { products, isCartOpen } = this.state;
+    const { products, isCartOpen,checkout,client } = this.state;
     const { Component, pageProps } = this.props; //Next's App has a component prop
     return (
       <Page>
@@ -84,6 +89,7 @@ class MyApp extends App {
           isCartOpen={isCartOpen}
           cartHandler={this.cartHandler}
           products={products}
+          checkout={checkout}
           client={client}
           {...pageProps}
         />

@@ -25,7 +25,6 @@ const SizeSelector = ({size,setSize,variants}) => {
   
   const QuantitySelector = ({setQuantity}) => {
     
-  
     const quantityChangeHandler = event => {
       //console.log("this fired!");
       setQuantity(event.target.value);

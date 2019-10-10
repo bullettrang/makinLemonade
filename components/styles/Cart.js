@@ -16,7 +16,7 @@ const CartStyled = styled.div`
   transform: translateX(0%);
   transition: transform 0.15s ease-in-out;
   z-index: 1;
-  padding:calc(3vmin); 
+  padding: calc(3vmin);
   .cart-closed {
     transform: translateX(0%);
   }
@@ -25,7 +25,6 @@ const CartStyled = styled.div`
 const SubTotal = styled.div`
   font-family: sans-serif;
 `;
-
 
 const Taxes = styled.div`
   font-family: sans-serif;
@@ -36,29 +35,51 @@ const Total = styled.div`
 `;
 
 const CloseButton = styled.span`
-  position:absolute;
-  left:75%;
-  color:pink;
-  background-color:orange;
-  padding:1em;
+  position: absolute;
+  left: 75%;
+  color: pink;
+  background-color: orange;
+  padding: 1em;
   cursor: pointer;
 `;
+
+const CartImage = styled.img`
+  max-width:50px;
+`
 const Cart = props => {
+  const { subtotalPrice, totalPrice, totalTax, lineItems } = props.checkout;
+  console.log(lineItems)
+  const renderLineItems = () => {
+    return lineItems.map(lineItem => {
+      return (
+        <li key={lineItem.id}>
+          {lineItem.variant.image && (
+            <CartImage src={lineItem.variant.image.src} alt={lineItem.title} />
+          )}
+          <div>{lineItem.title}</div>
+          <div>QTY: {lineItem.quantity}</div>
+          <div>${(lineItem.quantity * lineItem.variant.price).toFixed(2)}</div>
+        </li>
+      );
+    });
+  };
   return (
     <CartStyled>
       <CloseButton onClick={props.cartHandler}>X</CloseButton>
+      <ul>{renderLineItems()}</ul>
       <SubTotal>
         <h2>SubTotal</h2>
-        <span>{props.subTotal}</span>
+        <span>${subtotalPrice}</span>
       </SubTotal>
       <Taxes>
         <h2>Taxes</h2>
-        <span>{props.taxes}</span>
+        <span>${totalTax}</span>
       </Taxes>
       <Total>
         <h2>Total</h2>
-        <span>{props.total}</span>
+        <span>${totalPrice}</span>
       </Total>
+      <button>CHECK OUT</button>
     </CartStyled>
   );
 };
