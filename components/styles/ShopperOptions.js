@@ -28,10 +28,6 @@ const SizeSelector = ({size,setSize,variants}) => {
   
   const QuantitySelector = ({quantity,setQuantity}) => {
     
-    const quantityChangeHandler = event => {
-      //console.log("this fired!");
-      setQuantity(event.target.value);
-    };
 
     const quantityAdd =()=>{
         setQuantity(quantity+1);

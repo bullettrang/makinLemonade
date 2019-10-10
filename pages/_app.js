@@ -72,6 +72,17 @@ class MyApp extends App {
       });
   }
 
+  updateQuantityInCart=(lineItemId, quantity)=> {
+    const checkoutId = this.state.checkout.id
+    const lineItemsToUpdate = [{id: lineItemId, quantity: parseInt(quantity, 10)}]
+
+    return this.props.client.checkout.updateLineItems(checkoutId, lineItemsToUpdate).then(res => {
+      this.setState({
+        checkout: res,
+      });
+    });
+  }
+
   removeLineItemInCart=(lineItemId)=> {
     const checkoutId = this.state.checkout.id
 
@@ -97,6 +108,7 @@ class MyApp extends App {
         <Component
           addVariantToCart={this.addVariantToCart}
           removeLineItemInCart={this.removeLineItemInCart}
+          updateLineItems={this.updateQuantityInCart}
           isCartOpen={isCartOpen}
           cartHandler={this.cartHandler}
           products={products}
