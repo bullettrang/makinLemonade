@@ -2,7 +2,7 @@ import { useState } from "react";
 import styled from "styled-components";
 import LandingStyled from "../components/styles/Landing";
 //import CurvedText from '../components/styles/CurvedText';
-import Cart from "../components/styles/Cart";
+import Cart from "../components/Cart";
 import GalleryWrapper from "../components/styles/Gallery";
 import ProductOptions from "../components/styles/ShopperOptions";
 

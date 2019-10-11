@@ -51,9 +51,9 @@ class MyApp extends App {
     });
   }
 
-  openCheckout=()=> {
-    window.open(this.props.checkout.webUrl);
-  }
+  // openCheckout=()=> {
+  //   window.open(this.props.checkout.webUrl);
+  // }
 
 
   addVariantToCart= (variantId, quantity)=> {
@@ -76,7 +76,7 @@ class MyApp extends App {
     const checkoutId = this.state.checkout.id
     const lineItemsToUpdate = [{id: lineItemId, quantity: parseInt(quantity, 10)}]
 
-    return this.props.client.checkout.updateLineItems(checkoutId, lineItemsToUpdate).then(res => {
+    return client.checkout.updateLineItems(checkoutId, lineItemsToUpdate).then(res => {
       this.setState({
         checkout: res,
       });
@@ -108,7 +108,7 @@ class MyApp extends App {
         <Component
           addVariantToCart={this.addVariantToCart}
           removeLineItemInCart={this.removeLineItemInCart}
-          updateLineItems={this.updateQuantityInCart}
+          updateQuantityInCart={this.updateQuantityInCart}
           isCartOpen={isCartOpen}
           cartHandler={this.cartHandler}
           products={products}
