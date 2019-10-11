@@ -22,7 +22,8 @@ const StyledLinkWrapper = styled.div`
 `;
 const linkStyle = {
   color: "#76B251",
-  textTransform: "uppercase"
+  textTransform: "uppercase",
+  fontWeight:"800"
 };
 
 const Header = () => (

@@ -8,8 +8,6 @@ const StyledPage = styled.div`
 `;
 
 const Inner = styled.div`
-    /* max-width:1000px; */
-    /* margin: 0 auto; */
     margin:0 auto;
 `;
 export default class Page extends Component{

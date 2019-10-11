@@ -1,58 +1,50 @@
-import {useState} from 'react';
+import { useState } from "react";
 import styled from "styled-components";
-import LandingStyled from '../components/styles/Landing';
-import CurvedText from '../components/styles/CurvedText';
-
-
-
-
-
-const GalleryWrapper = styled.div`
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  justify-items: center;
-
-  img {
-    width: 250px;
-  }
-`;
-
-const SizeSelector = (props)=>{
-  //needs onChange Handler
-  const [size,setSize] = useState(props.options[0].values[0].value);
-
-  const sizeChangeHandler = (event)=>{
-    console.log('this fired!');
-
-    setSize(event.target.value);
-  }
-  return(
-    <select onChange={sizeChangeHandler} value={size} id="size">
-      {props.options[0].values.map((value)=>{
-      return  (<option key={value.value} value={value.value}>{value.value}</option>);
-      })}
-    </select>
-  )
-}
+import LandingStyled from "../components/styles/Landing";
+//import CurvedText from '../components/styles/CurvedText';
+import Cart from "../components/Cart";
+import GalleryWrapper from "../components/styles/Gallery";
+import ProductOptions from "../components/styles/ShopperOptions";
 
 const Index = props => {
-  const { products } = props;
+  const {
+    products,
+    cartHandler,
+    isCartOpen,
+    addVariantToCart,
+    checkout,
+    removeLineItemInCart,
+    updateQuantityInCart
+  } = props;
+  //console.log(products)
   return (
     <div>
-      <LandingStyled backgroundImage={`url(${"/static/icecream.jpg"})`}>
-        <CurvedText />
-      </LandingStyled>
+      <LandingStyled
+        backgroundImage={`url(${"/static/landing-main.png"})`}
+      ></LandingStyled>
+      {isCartOpen ? (
+        <Cart
+          checkout={checkout}
+          cartHandler={cartHandler}
+          removeLineItemInCart={removeLineItemInCart}
+          updateQuantityInCart={updateQuantityInCart}
+        />
+      ) : null}
       <GalleryWrapper>
         {products.map(product => {
-          return (
+          return product.availableForSale ? (
             <div key={product.id}>
               <h1>{product.handle}</h1>
               <h2>{product.description}</h2>
               <img src={product.images[0].src} />
               <div>{`$ ${product.variants[0].price}`}</div>
-              <SizeSelector options={product.options}/>
+              <ProductOptions
+                addVariantToCart={addVariantToCart}
+                variants={product.variants}
+                options={product.options}
+              />
             </div>
-          );
+          ) : null;
         })}
       </GalleryWrapper>
     </div>
