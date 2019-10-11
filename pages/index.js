@@ -1,10 +1,7 @@
-import { useState } from "react";
-import styled from "styled-components";
 import LandingStyled from "../components/styles/Landing";
-//import CurvedText from '../components/styles/CurvedText';
 import Cart from "../components/Cart";
 import GalleryWrapper from "../components/styles/Gallery";
-import ProductOptions from "../components/styles/ShopperOptions";
+import Product from '../components/Product';
 
 const Index = props => {
   const {
@@ -33,17 +30,7 @@ const Index = props => {
       <GalleryWrapper>
         {products.map(product => {
           return product.availableForSale ? (
-            <div key={product.id}>
-              <h1>{product.handle}</h1>
-              <h2>{product.description}</h2>
-              <img src={product.images[0].src} />
-              <div>{`$ ${product.variants[0].price}`}</div>
-              <ProductOptions
-                addVariantToCart={addVariantToCart}
-                variants={product.variants}
-                options={product.options}
-              />
-            </div>
+              <Product key={product.id} addVariantToCart={addVariantToCart} product={product}/>
           ) : null;
         })}
       </GalleryWrapper>

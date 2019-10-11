@@ -12,8 +12,8 @@ const StyledHeader = styled.div`
 const StyledLogo = styled.img`
   width: 150px;
   height: 150px;
-  padding-left: 8em;
-  padding-right: 8em;
+  /* padding-left: 8em;
+  padding-right: 8em; */
 `;
 
 const StyledLinkWrapper = styled.div`
