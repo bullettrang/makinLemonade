@@ -1,10 +1,8 @@
-import { useState } from "react";
-import styled from "styled-components";
 import LandingStyled from "../components/styles/Landing";
-//import CurvedText from '../components/styles/CurvedText';
 import Cart from "../components/Cart";
 import GalleryWrapper from "../components/styles/Gallery";
-import ProductOptions from "../components/styles/ShopperOptions";
+import Product from "../components/Product";
+import Featured from "../components/styles/Featured";
 
 const Index = props => {
   const {
@@ -20,7 +18,7 @@ const Index = props => {
   return (
     <div>
       <LandingStyled
-        backgroundImage={`url(${"/static/landing-main.png"})`}
+        backgroundImage={`url(${"/static/icecream.jpg"})`}
       ></LandingStyled>
       {isCartOpen ? (
         <Cart
@@ -30,23 +28,22 @@ const Index = props => {
           updateQuantityInCart={updateQuantityInCart}
         />
       ) : null}
-      <GalleryWrapper>
-        {products.map(product => {
-          return product.availableForSale ? (
-            <div key={product.id}>
-              <h1>{product.handle}</h1>
-              <h2>{product.description}</h2>
-              <img src={product.images[0].src} />
-              <div>{`$ ${product.variants[0].price}`}</div>
-              <ProductOptions
+      <section>
+        <Featured>
+          <h2>Featured</h2>
+        </Featured>
+        <GalleryWrapper>
+          {products.map(product => {
+            return product.availableForSale ? (
+              <Product
+                key={product.id}
                 addVariantToCart={addVariantToCart}
-                variants={product.variants}
-                options={product.options}
+                product={product}
               />
-            </div>
-          ) : null;
-        })}
-      </GalleryWrapper>
+            ) : null;
+          })}
+        </GalleryWrapper>
+      </section>
     </div>
   );
 };

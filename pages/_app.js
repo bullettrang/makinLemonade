@@ -8,16 +8,6 @@ const client = Client.buildClient({
   domain: "makinlemonade.myshopify.com"
 });
 
-// this.state = {
-//   isCartOpen: false,
-//   checkout: { lineItems: [] },
-//   products: [],
-//   shop: {}
-// };
-
-
-// this.updateQuantityInCart = this.updateQuantityInCart.bind(this);
-// this.removeLineItemInCart = this.removeLineItemInCart.bind(this);
 class MyApp extends App {
   //next provides an App automatically, but we made our own called MyApp
   constructor() {

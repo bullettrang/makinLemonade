@@ -3,15 +3,15 @@ import CartWrapper from './styles/CartWrapper';
 import CloseCartButton from './styles/CloseCartButton';
 import CartItem from './CartItem';
 const SubTotal = styled.div`
-  font-family: sans-serif;
+  
 `;
 
 const Taxes = styled.div`
-  font-family: sans-serif;
+
 `;
 
 const Total = styled.div`
-  font-family: sans-serif;
+
 `;
 
 
