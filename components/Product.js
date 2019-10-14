@@ -10,6 +10,7 @@ const ProductInfo = styled.div`
     line-height:1.8em;
 
     font-size:.8rem;
+    font-family:sans-serif;
 `;
 
 const Product = ({product,addVariantToCart})=>{
@@ -18,7 +19,7 @@ const Product = ({product,addVariantToCart})=>{
         <ProductWrapper>
         <img src={product.images[0].src} alt={product.title} />
         <ProductInfo>
-          <h1>{product.title}</h1>
+          <h4>{product.title}</h4>
           <p>{product.description}</p>
           <span>{`$ ${product.variants[0].price}`}</span>
         </ProductInfo>

@@ -4,7 +4,7 @@ import GalleryWrapper from "../components/styles/Gallery";
 import Product from '../components/Product';
 
 const Index = props => {
-  const {
+  const  {
     products,
     cartHandler,
     isCartOpen,
@@ -17,7 +17,7 @@ const Index = props => {
   return (
     <div>
       <LandingStyled
-        backgroundImage={`url(${"/static/landing-main.png"})`}
+        backgroundImage={`url(${"/static/icecream.jpg"})`}
       ></LandingStyled>
       {isCartOpen ? (
         <Cart

@@ -5,7 +5,7 @@ const StyledHeader = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
-  padding-top: 2em;
+  padding-top: 1em;
   margin-bottom:calc(5vmin);
 `;
 
@@ -22,7 +22,6 @@ const StyledLinkWrapper = styled.div`
 `;
 const linkStyle = {
   color: "#76B251",
-  textTransform: "uppercase",
   fontWeight:"800"
 };
 
@@ -30,13 +29,13 @@ const Header = () => (
   <StyledHeader>
     <StyledLinkWrapper>
       <Link href="/">
-        <a style={linkStyle}>Home</a>
+        <a style={linkStyle}>home</a>
       </Link>
     </StyledLinkWrapper>
     <StyledLogo src={"/static/logo.jpg"} />
     <StyledLinkWrapper>
       <Link href="/about">
-        <a style={linkStyle}>About</a>
+        <a style={linkStyle}>about</a>
       </Link>
     </StyledLinkWrapper>
   </StyledHeader>
