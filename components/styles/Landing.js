@@ -23,6 +23,10 @@ const LandingStyled = styled.div`
     letter-spacing: 0.45rem;
     font-weight: 800;
   }
+
+  @media (max-width:650px)  {
+    display:none;
+  }
 `;
 
 export default LandingStyled;

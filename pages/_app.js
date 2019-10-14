@@ -1,7 +1,7 @@
 import App from "next/app"; //this wraps around all
 import Page from "../components/Page";
 import Client from "shopify-buy";
-
+import Cart from "../components/Cart";
 //sometimes I need to restart nextjs to see my changes
 const client = Client.buildClient({
   storefrontAccessToken: "c6fd602fd95dcddd412fe21b7a813794",
@@ -45,43 +45,49 @@ class MyApp extends App {
   //   window.open(this.props.checkout.webUrl);
   // }
 
-
-  addVariantToCart= (variantId, quantity)=> {
+  addVariantToCart = (variantId, quantity) => {
     this.setState({
       isCartOpen: true
     });
 
     const lineItemsToAdd = [{ variantId, quantity: parseInt(quantity, 10) }];
     const checkoutId = this.state.checkout.id;
-     return client.checkout.addLineItems(checkoutId, lineItemsToAdd)
+    return client.checkout
+      .addLineItems(checkoutId, lineItemsToAdd)
       .then(res => {
         this.setState({
           checkout: res
         });
-        console.log('from cart ',res);
+        console.log("from cart ", res);
       });
-  }
+  };
 
-  updateQuantityInCart=(lineItemId, quantity)=> {
-    const checkoutId = this.state.checkout.id
-    const lineItemsToUpdate = [{id: lineItemId, quantity: parseInt(quantity, 10)}]
+  updateQuantityInCart = (lineItemId, quantity) => {
+    const checkoutId = this.state.checkout.id;
+    const lineItemsToUpdate = [
+      { id: lineItemId, quantity: parseInt(quantity, 10) }
+    ];
 
-    return client.checkout.updateLineItems(checkoutId, lineItemsToUpdate).then(res => {
-      this.setState({
-        checkout: res,
+    return client.checkout
+      .updateLineItems(checkoutId, lineItemsToUpdate)
+      .then(res => {
+        this.setState({
+          checkout: res
+        });
       });
-    });
-  }
+  };
 
-  removeLineItemInCart=(lineItemId)=> {
-    const checkoutId = this.state.checkout.id
+  removeLineItemInCart = lineItemId => {
+    const checkoutId = this.state.checkout.id;
 
-    return client.checkout.removeLineItems(checkoutId, [lineItemId]).then(res => {
-      this.setState({
-        checkout: res,
+    return client.checkout
+      .removeLineItems(checkoutId, [lineItemId])
+      .then(res => {
+        this.setState({
+          checkout: res
+        });
       });
-    });
-  }
+  };
 
   cartHandler = () => {
     this.setState(prevState => {
@@ -90,11 +96,23 @@ class MyApp extends App {
   };
 
   render() {
-    const { products, isCartOpen,checkout,client } = this.state;
+    const { products, isCartOpen, checkout, client } = this.state;
     const { Component, pageProps } = this.props; //Next's App has a component prop
     return (
-      <Page>
-        {/*Consists of Head */}
+      <Page
+        checkout={checkout}
+        cartHandler={this.cartHandler}
+        removeLineItemInCart={this.removeLineItemInCart}
+        updateQuantityInCart={this.updateQuantityInCart}
+      >
+        {isCartOpen ? (
+          <Cart
+            checkout={checkout}
+            cartHandler={this.cartHandler}
+            removeLineItemInCart={this.removeLineItemInCart}
+            updateQuantityInCart={this.updateQuantityInCart}
+          />
+        ) : null}
         <Component
           addVariantToCart={this.addVariantToCart}
           removeLineItemInCart={this.removeLineItemInCart}

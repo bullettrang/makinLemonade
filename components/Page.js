@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Meta from "./Meta";
 import styled from "styled-components";
 import Header from "./Header";
+import Cart from '../components/Cart';
 const StyledPage = styled.div`
   background: white;
   color: "#393939";
@@ -14,10 +15,11 @@ const Inner = styled.div`
 `;
 export default class Page extends Component {
   render() {
+    const {checkout,isCartOpen,cartHandler,removeLineItemInCart,updateQuantityInCart}=this.props;
     return (
       <StyledPage>
         <Meta /> {/*Uses Next's Head */}
-        <Header /> {/*Uses Next's Router, Link */}
+        <Header cartHandler={cartHandler}/> {/*Uses Next's Router, Link */}
         <style jsx global>{`
 
           * { box-sizing: border-box; margin: 0; padding: 0 }

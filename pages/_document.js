@@ -16,7 +16,7 @@ export default class MyDocument extends Document {
   render() {
     return (
       <html>
-        <Head>{this.props.styleTags}</Head>
+        <Head>{this.props.styleTags}<link href="https://fonts.googleapis.com/css?family=Questrial&display=swap" rel="stylesheet"></link></Head>
         <body>
           <Main />
           <NextScript />

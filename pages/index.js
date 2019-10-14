@@ -20,30 +20,6 @@ const Index = props => {
       <LandingStyled
         backgroundImage={`url(${"/static/icecream.jpg"})`}
       ></LandingStyled>
-      {isCartOpen ? (
-        <Cart
-          checkout={checkout}
-          cartHandler={cartHandler}
-          removeLineItemInCart={removeLineItemInCart}
-          updateQuantityInCart={updateQuantityInCart}
-        />
-      ) : null}
-      <section>
-        <Featured>
-          <h2>Featured</h2>
-        </Featured>
-        <GalleryWrapper>
-          {products.map(product => {
-            return product.availableForSale ? (
-              <Product
-                key={product.id}
-                addVariantToCart={addVariantToCart}
-                product={product}
-              />
-            ) : null;
-          })}
-        </GalleryWrapper>
-      </section>
     </div>
   );
 };
