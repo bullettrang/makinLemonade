@@ -10,8 +10,8 @@ const StyledHeader = styled.div`
 `;
 
 const StyledLogo = styled.img`
-  width: 150px;
-  height: 150px;
+  width: 120px;
+  height: 120px;
   /* padding-left: 8em;
   padding-right: 8em; */
 `;

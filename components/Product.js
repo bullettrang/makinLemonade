@@ -8,15 +8,18 @@ const ProductInfo = styled.div`
     display:flex;
     flex-direction:column;
     line-height:1.8em;
+
+    font-size:.8rem;
 `;
 
 const Product = ({product,addVariantToCart})=>{
+  console.log(product)
     return(
         <ProductWrapper>
-        <img src={product.images[0].src} alt={product.handle} />
+        <img src={product.images[0].src} alt={product.title} />
         <ProductInfo>
-          <h1>{product.handle}</h1>
-          <h4>{product.description}</h4>
+          <h1>{product.title}</h1>
+          <p>{product.description}</p>
           <span>{`$ ${product.variants[0].price}`}</span>
         </ProductInfo>
         <ProductOptions
