@@ -13,6 +13,7 @@ const CartWrapper = styled.div`
   transition: transform 0.15s ease-in-out;
   z-index: 1;
   padding: calc(3vmin);
+  font-family: sans-serif;
   .cart-closed {
     transform: translateX(0%);
   }

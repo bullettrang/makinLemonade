@@ -8,7 +8,6 @@ const ProductInfo = styled.div`
     display:flex;
     flex-direction:column;
     line-height:1.8em;
-
     font-size:.8rem;
     font-family:sans-serif;
 `;
@@ -21,7 +20,7 @@ const Product = ({product,addVariantToCart})=>{
         <ProductInfo>
           <h4>{product.title}</h4>
           <p>{product.description}</p>
-          <span>{`$ ${product.variants[0].price}`}</span>
+          <span><strong>{`$ ${product.variants[0].price}`}</strong></span>
         </ProductInfo>
         <ProductOptions
           addVariantToCart={addVariantToCart}

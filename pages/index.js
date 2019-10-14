@@ -1,10 +1,11 @@
 import LandingStyled from "../components/styles/Landing";
 import Cart from "../components/Cart";
 import GalleryWrapper from "../components/styles/Gallery";
-import Product from '../components/Product';
+import Product from "../components/Product";
+import Featured from "../components/styles/Featured";
 
 const Index = props => {
-  const  {
+  const {
     products,
     cartHandler,
     isCartOpen,
@@ -27,13 +28,22 @@ const Index = props => {
           updateQuantityInCart={updateQuantityInCart}
         />
       ) : null}
-      <GalleryWrapper>
-        {products.map(product => {
-          return product.availableForSale ? (
-              <Product key={product.id} addVariantToCart={addVariantToCart} product={product}/>
-          ) : null;
-        })}
-      </GalleryWrapper>
+      <section>
+        <Featured>
+          <h2>Featured</h2>
+        </Featured>
+        <GalleryWrapper>
+          {products.map(product => {
+            return product.availableForSale ? (
+              <Product
+                key={product.id}
+                addVariantToCart={addVariantToCart}
+                product={product}
+              />
+            ) : null;
+          })}
+        </GalleryWrapper>
+      </section>
     </div>
   );
 };
