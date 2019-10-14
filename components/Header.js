@@ -87,8 +87,8 @@ const Header = props => {
           </Link>
         </StyledLinkWrapper>
       </LinkContainer>
-      <Shop>
-        <CartIcon width={"40px"} height={"40px"} fill={"#FCEE21"}  onClick={()=>cartHandler}/>
+      <Shop onClick={cartHandler}>
+        <CartIcon width={"40px"} height={"40px"} fill={"#FCEE21"}  />
       </Shop>
     </StyledHeader>
   );

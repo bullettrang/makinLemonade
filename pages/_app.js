@@ -58,7 +58,7 @@ class MyApp extends App {
         this.setState({
           checkout: res
         });
-        console.log("from cart ", res);
+
       });
   };
 
@@ -90,6 +90,7 @@ class MyApp extends App {
   };
 
   cartHandler = () => {
+    console.log('cartHandler activate')
     this.setState(prevState => {
       return { isCartOpen: !prevState.isCartOpen };
     });
