@@ -15,7 +15,7 @@ const Inner = styled.div`
 `;
 export default class Page extends Component {
   render() {
-    const {checkout,isCartOpen,cartHandler,removeLineItemInCart,updateQuantityInCart}=this.props;
+    const {cartHandler}=this.props;
     return (
       <StyledPage>
         <Meta /> {/*Uses Next's Head */}

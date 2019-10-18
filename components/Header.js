@@ -6,7 +6,8 @@ const StyledHeader = styled.div`
   flex-direction: row;
   padding-top: calc(2vmin);
   justify-content: space-between;
-  background: ${props => props.backgroundImage};
+  /* background: ${props => props.backgroundImage}; */
+  background-color:#231f20;
   background-position: 0 20%;
   background-size: cover;
   background-repeat: no-repeat;
@@ -37,7 +38,8 @@ const StyledLinkWrapper = styled.span`
 `;
 
 const AnchorStyled = styled.a`
-  color: #fcee21;
+  color:rgb(252, 227, 115);
+  /* color: white; */
   font-weight: 800;
   text-decoration: none;
   cursor: pointer;
@@ -88,7 +90,7 @@ const Header = props => {
         </StyledLinkWrapper>
       </LinkContainer>
       <Shop onClick={cartHandler}>
-        <CartIcon width={"40px"} height={"40px"} fill={"#FCEE21"}  />
+        <CartIcon width={"40px"} height={"40px"} fill={"rgb(252, 227, 115)"}  />
       </Shop>
     </StyledHeader>
   );

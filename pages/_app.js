@@ -101,10 +101,7 @@ class MyApp extends App {
     const { Component, pageProps } = this.props; //Next's App has a component prop
     return (
       <Page
-        checkout={checkout}
         cartHandler={this.cartHandler}
-        removeLineItemInCart={this.removeLineItemInCart}
-        updateQuantityInCart={this.updateQuantityInCart}
       >
         {isCartOpen ? (
           <Cart
