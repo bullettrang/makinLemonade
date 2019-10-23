@@ -12,7 +12,8 @@ const Index = props => {
     addVariantToCart,
     checkout,
     removeLineItemInCart,
-    updateQuantityInCart
+    updateQuantityInCart,
+    checkoutHandler
   } = props;
   //console.log(products)
   return (
@@ -23,6 +24,7 @@ const Index = props => {
       {isCartOpen ? (
         <Cart
           checkout={checkout}
+          checkoutHandler={checkoutHandler}
           cartHandler={cartHandler}
           removeLineItemInCart={removeLineItemInCart}
           updateQuantityInCart={updateQuantityInCart}

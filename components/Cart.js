@@ -18,7 +18,7 @@ const Total = styled.div`
 
 const Cart = props => {
   const { subtotalPrice, totalPrice, totalTax, lineItems } = props.checkout;
-  const { removeLineItemInCart,updateQuantityInCart } = props;
+  const { removeLineItemInCart,updateQuantityInCart,checkoutHandler } = props;
 
   const renderLineItems = () => {
     return lineItems.map(lineItem => {
@@ -43,7 +43,7 @@ const Cart = props => {
         <h2>Total</h2>
         <span>${totalPrice}</span>
       </Total>
-      <button>CHECK OUT</button>
+      <button onClick={checkoutHandler}>CHECK OUT</button>
     </CartWrapper>
   );
 };
