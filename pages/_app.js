@@ -41,9 +41,14 @@ class MyApp extends App {
     });
   }
 
-  // openCheckout=()=> {
-  //   window.open(this.props.checkout.webUrl);
-  // }
+  openCheckout=()=> {
+    // client.checkout.fetch(this.state.checkout.id).then((checkout) => {
+    //   // Do something with the checkout
+    //   console.log("here is the checkout! ",checkout);
+    // });
+    console.log(client.checkout)
+    window.open(this.state.checkout.webUrl);
+  }
 
 
   addVariantToCart= (variantId, quantity)=> {
@@ -58,7 +63,6 @@ class MyApp extends App {
         this.setState({
           checkout: res
         });
-        console.log('from cart ',res);
       });
   }
 
@@ -99,6 +103,7 @@ class MyApp extends App {
           addVariantToCart={this.addVariantToCart}
           removeLineItemInCart={this.removeLineItemInCart}
           updateQuantityInCart={this.updateQuantityInCart}
+          checkoutHandler={this.openCheckout}
           isCartOpen={isCartOpen}
           cartHandler={this.cartHandler}
           products={products}

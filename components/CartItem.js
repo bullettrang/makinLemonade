@@ -34,7 +34,7 @@ const CartItem = ({lineItem,removeLineItemInCart,updateQuantityInCart})=>{
           <div className="lineItem--qty">QTY</div>
           <div className="lineItem--qty--controls">
             <button onClick={()=>decrementItem(lineItem.id,lineItem.quantity)}>-</button>
-            <input type="text" value={lineItem.quantity} />
+            <span>{lineItem.quantity} </span>
             <button onClick={()=>incrementItem(lineItem.id,lineItem.quantity)}>+</button>
           </div>
           <div className="lineItem--total">
