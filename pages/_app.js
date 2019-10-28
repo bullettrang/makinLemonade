@@ -25,11 +25,8 @@ class MyApp extends App {
   }
   componentDidMount() {
     //create empty checkout
-    client.checkout.create().then(res => {
-      this.setState({
-        checkout: res
-      });
-    });
+    this.fetchCheckout();
+
 
     //fetch all products,
     client.product.fetchAll().then(products => {
@@ -44,12 +41,60 @@ class MyApp extends App {
     });
   }
 
+  //why is setState in createNewCart null?
+  createNewCart=()=>{
+    return client.checkout.create().then(res => {
+      this.setState({
+        checkout: res
+      });
+      console.log(res.id)
+      localStorage.setItem('checkoutId',res.id);
+    })
+    .catch(error=>console.log(error));
+  }
+
+  fetchCheckout=()=>{
+    let checkoutId = localStorage.getItem('checkoutId');
+      if(checkoutId) {
+        console.log('There was an existing cart');
+        // We have a checkoutId, let's see if it has been completed
+        return client.checkout.fetch(checkoutId)
+          .then((remoteCart)=> {
+            console.log('fetching that is ALREADY made');
+            console.log(remoteCart);
+            // The checkout was not completed, grab its contents
+            if (remoteCart.completedAt === null) {
+      
+              this.setState({
+                checkout: remoteCart
+              });
+            } else {
+              // The checkout was completed, remove the localStorage item
+              // Start from scratch
+              localStorage.removeItem('checkoutId');
+              this.createNewCart();
+            }
+          })
+          .catch((error) => {
+            // While the cart ID exists, the checkout has expired.
+            // So we need to clear out localStorage and create a new cart.
+            console.log('The cart must have been expired', error);
+            localStorage.removeItem('checkoutId');
+            this.createNewCart();
+          })
+        // There was no checkoutId, so we'll start from scratch
+      } else {
+        console.log('There was no existing cart');
+        this.createNewCart();
+      }
+
+  }
+
   openCheckout=()=> {
     // client.checkout.fetch(this.state.checkout.id).then((checkout) => {
     //   // Do something with the checkout
     //   console.log("here is the checkout! ",checkout);
     // });
-    console.log(client.checkout)
     window.open(this.state.checkout.webUrl);
   }
 
@@ -63,6 +108,7 @@ class MyApp extends App {
     const checkoutId = this.state.checkout.id;
      return client.checkout.addLineItems(checkoutId, lineItemsToAdd)
       .then(res => {
+        console.log(res);
         this.setState({
           checkout: res
         });
