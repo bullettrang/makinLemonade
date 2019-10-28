@@ -7,8 +7,8 @@ const client = Client.buildClient({
   // storefrontAccessToken: "c6fd602fd95dcddd412fe21b7a813794",
   // domain: "makinlemonade.myshopify.com"
   //domain: "makinlemonade.myshopify.com"
-  storefrontAccessToken:process.env.STORE_FRONT_ACCESS_TOKEN,
-  domain:process.env.DOMAIN
+  storefrontAccessToken: process.env.STORE_FRONT_ACCESS_TOKEN,
+  domain: process.env.DOMAIN
 });
 
 class MyApp extends App {
@@ -27,7 +27,6 @@ class MyApp extends App {
     //create empty checkout
     this.fetchCheckout();
 
-
     //fetch all products,
     client.product.fetchAll().then(products => {
       this.setState({ products: products });
@@ -41,100 +40,100 @@ class MyApp extends App {
     });
   }
 
-  //why is setState in createNewCart null?
-  createNewCart=()=>{
-    return client.checkout.create().then(res => {
-      this.setState({
-        checkout: res
-      });
-      console.log(res.id)
-      localStorage.setItem('checkoutId',res.id);
-    })
-    .catch(error=>console.log(error));
-  }
 
-  fetchCheckout=()=>{
-    let checkoutId = localStorage.getItem('checkoutId');
-      if(checkoutId) {
-        console.log('There was an existing cart');
-        // We have a checkoutId, let's see if it has been completed
-        return client.checkout.fetch(checkoutId)
-          .then((remoteCart)=> {
-            console.log('fetching that is ALREADY made');
-            console.log(remoteCart);
-            // The checkout was not completed, grab its contents
-            if (remoteCart.completedAt === null) {
-      
-              this.setState({
-                checkout: remoteCart
-              });
-            } else {
-              // The checkout was completed, remove the localStorage item
-              // Start from scratch
-              localStorage.removeItem('checkoutId');
-              this.createNewCart();
-            }
-          })
-          .catch((error) => {
-            // While the cart ID exists, the checkout has expired.
-            // So we need to clear out localStorage and create a new cart.
-            console.log('The cart must have been expired', error);
-            localStorage.removeItem('checkoutId');
+  createNewCart = () => {
+    return client.checkout
+      .create()
+      .then(res => {
+        this.setState({
+          checkout: res
+        });
+        localStorage.setItem("checkoutId", res.id);
+      })
+      .catch(error => console.log(error));
+  };
+
+  fetchCheckout = () => {
+    let checkoutId = localStorage.getItem("checkoutId");
+    if (checkoutId) {
+      // We have a checkoutId, let's see if it has been completed
+      return client.checkout
+        .fetch(checkoutId)
+        .then(remoteCart => {
+          // The checkout was not completed, grab its contents
+          if (remoteCart.completedAt === null) {
+            this.setState({
+              checkout: remoteCart
+            });
+          } else {
+            // The checkout was completed, remove the localStorage item
+            // Start from scratch
+            localStorage.removeItem("checkoutId");
             this.createNewCart();
-          })
-        // There was no checkoutId, so we'll start from scratch
-      } else {
-        console.log('There was no existing cart');
-        this.createNewCart();
-      }
+          }
+        })
+        .catch(error => {
+          // While the cart ID exists, the checkout has expired.
+          // So we need to clear out localStorage and create a new cart.
+          localStorage.removeItem("checkoutId");
+          this.createNewCart();
+        });
+      // There was no checkoutId, so we'll start from scratch
+      this.createNewCart();
+    }
+  };
 
-  }
-
-  openCheckout=()=> {
+  openCheckout = () => {
     // client.checkout.fetch(this.state.checkout.id).then((checkout) => {
     //   // Do something with the checkout
     //   console.log("here is the checkout! ",checkout);
     // });
     window.open(this.state.checkout.webUrl);
-  }
+  };
 
-
-  addVariantToCart= (variantId, quantity)=> {
+  addVariantToCart = (variantId, quantity) => {
     this.setState({
       isCartOpen: true
     });
 
     const lineItemsToAdd = [{ variantId, quantity: parseInt(quantity, 10) }];
     const checkoutId = this.state.checkout.id;
-     return client.checkout.addLineItems(checkoutId, lineItemsToAdd)
+    return client.checkout
+      .addLineItems(checkoutId, lineItemsToAdd)
       .then(res => {
         console.log(res);
         this.setState({
           checkout: res
         });
       });
-  }
+  };
 
-  updateQuantityInCart=(lineItemId, quantity)=> {
-    const checkoutId = this.state.checkout.id
-    const lineItemsToUpdate = [{id: lineItemId, quantity: parseInt(quantity, 10)}]
+  updateQuantityInCart = (lineItemId, quantity) => {
+    const checkoutId = this.state.checkout.id;
+    const lineItemsToUpdate = [
+      { id: lineItemId, quantity: parseInt(quantity, 10) }
+    ];
 
-    return client.checkout.updateLineItems(checkoutId, lineItemsToUpdate).then(res => {
-      this.setState({
-        checkout: res,
+    return client.checkout
+      .updateLineItems(checkoutId, lineItemsToUpdate)
+      .then(res => {
+        this.setState({
+          checkout: res
+        });
       });
-    });
-  }
+  };
 
-  removeLineItemInCart=(lineItemId)=> {
-    const checkoutId = this.state.checkout.id
+  removeLineItemInCart = lineItemId => {
+    const checkoutId = this.state.checkout.id;
 
-    return client.checkout.removeLineItems(checkoutId, [lineItemId]).then(res => {
-      this.setState({
-        checkout: res,
+    return client.checkout
+      .removeLineItems(checkoutId, [lineItemId])
+      .then(res => {
+        this.setState({
+          checkout: res
+        });
       });
-    });
-  }
+  };
 
   cartHandler = () => {
     this.setState(prevState => {
@@ -143,7 +142,7 @@ class MyApp extends App {
   };
 
   render() {
-    const { products, isCartOpen,checkout,client } = this.state;
+    const { products, isCartOpen, checkout, client } = this.state;
     const { Component, pageProps } = this.props; //Next's App has a component prop
     return (
       <Page>
