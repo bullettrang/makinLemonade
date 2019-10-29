@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import ProductOptions from "./styles/ShopperOptions";
+import ProductControls from "./styles/ProductControls";
 const ProductWrapper = styled.div`
   text-align: center;
 `;
@@ -23,7 +23,7 @@ const Product = ({ product, addVariantToCart }) => {
           <strong>{`$ ${product.variants[0].price}`}</strong>
         </span>
       </ProductInfo>
-      <ProductOptions
+      <ProductControls
         addVariantToCart={addVariantToCart}
         variants={product.variants}
         options={product.options}

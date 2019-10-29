@@ -123,16 +123,14 @@ class MyApp extends App {
       });
   };
 
-  removeLineItemInCart = lineItemId => {
+  removeLineItemInCart = async lineItemId => {
     const checkoutId = this.state.checkout.id;
 
-    return client.checkout
-      .removeLineItems(checkoutId, [lineItemId])
-      .then(res => {
-        this.setState({
-          checkout: res
-        });
-      });
+    const res = await client.checkout
+      .removeLineItems(checkoutId, [lineItemId]);
+    this.setState({
+      checkout: res
+    });
   };
 
   cartHandler = () => {
