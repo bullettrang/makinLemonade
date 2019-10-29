@@ -1,0 +1,10 @@
+{
+    "presets": ["next/babel"],
+    "plugins": [
+      [
+        "styled-components",
+        { "ssr": true, "displayName": true, "preprocess": false }
+      ]
+    ]
+  }
+  //https://github.com/zeit/next.js/issues/7423
