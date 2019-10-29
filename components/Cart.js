@@ -23,7 +23,7 @@ const Cart = props => {
   const renderLineItems = () => {
     return lineItems.map(lineItem => {
       return (
-        <CartItem lineItem={lineItem} removeLineItemInCart={removeLineItemInCart} updateQuantityInCart={updateQuantityInCart}/>
+        <CartItem key={lineItem.id} lineItem={lineItem} removeLineItemInCart={removeLineItemInCart} updateQuantityInCart={updateQuantityInCart}/>
       );
     });
   };
