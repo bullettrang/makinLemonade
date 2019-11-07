@@ -13,8 +13,8 @@ const client = Client.buildClient({
 
 class MyApp extends App {
   //next provides an App automatically, but we made our own called MyApp
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
       isCartOpen: false,
@@ -22,6 +22,7 @@ class MyApp extends App {
       products: [],
       shop: {}
     };
+    console.log(props.initialState)
   }
   componentDidMount() {
     //create empty checkout
@@ -142,6 +143,7 @@ class MyApp extends App {
   render() {
     const { products, isCartOpen, checkout, client } = this.state;
     const { Component, pageProps } = this.props; //Next's App has a component prop
+    
     return (
       <Page>
         {/*Consists of Head */}
