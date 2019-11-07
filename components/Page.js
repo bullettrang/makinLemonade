@@ -19,7 +19,6 @@ export default class Page extends Component {
         <Meta /> {/*Uses Next's Head */}
         <Header /> {/*Uses Next's Router, Link */}
         <style jsx global>{`
-
           * { box-sizing: border-box; margin: 0; padding: 0 }
         `}</style>
         <Inner>{this.props.children}</Inner>

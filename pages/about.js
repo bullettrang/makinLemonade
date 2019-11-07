@@ -1,51 +1,8 @@
 import Featured from "../components/styles/Featured";
-import styled from 'styled-components';
+import AboutWrap from '../components/styles/About/AboutWrap';
+import AboutImage from "../components/styles/About/AboutImage";
+import AboutText from "../components/styles/About/AboutText";
 
-const AboutWrap = styled.div`
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  padding:calc(5vmin);
-
-  @media (max-width:650px) {
-    grid-template-columns:1fr;
-  }
-`;
-
-const AboutImage = styled.img`
-  max-width:100%;
-  height:auto;
-  padding:calc(5vmin);
-
-
-`;
-
-const AboutText= styled.div`
-  text-align:center;
-  padding:calc(5vmin);
-  line-height:2rem;
-
-  @media (min-width: 320px) and (max-width: 960px){
-    /*I want p to go from 10px-15px*/
-    p{
-      font-size: calc(0.75rem + 3 * (100vw - 320px) / (960 - 320));
-    }
-  }
-
-  @media (min-width:961px) and (max-width:1600px){
-    /*I want p to go from 12px-15px*/
-    p{
-      font-size: calc(0.75rem + 3 * (100vw - 961px) / (1600 - 961));
-    }
-  }
-
-  @media (min-width: 1601px) and (max-width: 2400px) {
-  /**I want p to go from 15px-18px */
-  p{
-    font-size: calc(0.9375rem + 3 * (100vw - 1601px) / (2400 - 1601));
-  }
-
-}
-`
 export default function About() {
   return (
     <div>
@@ -53,21 +10,23 @@ export default function About() {
         <h2>About Us</h2>
       </Featured>
       <AboutWrap>
-      <div><AboutImage src="/static/iron_brigade_slideshow.jpg"/></div>
-      <AboutText style={{textAlign:"center"}}>
-        <h3>When Life gives you Lemons, make Lemonade</h3>
-        <p>Turn something sour, into something sweet</p>
-        <p>
-          Makin' Lemonade references the quote "When life gives you lemons, make
-          lemonade." Lemons resemble the sourness of life and when one makes
-          lemonade, it symbolizes when they are able to push through hardship
-          and struggle to make something sweet. Makin' Lemonade represents a
-          community of people who have been through struggle and persevered.
-          Fitness is highly emphasized in this brand as fitness is solely about
-          self improvement. And through hardship and struggle, comes self
-          improvement
-        </p>
-      </AboutText>
+        <div>
+          <AboutImage src="/static/iron_brigade_slideshow.jpg" />
+        </div>
+        <AboutText>
+          <h3>When Life gives you Lemons, make Lemonade</h3>
+          <p>Turn something sour, into something sweet</p>
+          <p>
+            Makin' Lemonade references the quote "When life gives you lemons,
+            make lemonade." Lemons resemble the sourness of life and when one
+            makes lemonade, it symbolizes when they are able to push through
+            hardship and struggle to make something sweet. Makin' Lemonade
+            represents a community of people who have been through struggle and
+            persevered. Fitness is highly emphasized in this brand as fitness is
+            solely about self improvement. And through hardship and struggle,
+            comes self improvement
+          </p>
+        </AboutText>
       </AboutWrap>
     </div>
   );
