@@ -1,21 +1,7 @@
-import styled from 'styled-components'
 import HeaderContainer from '../components/styles/Header/HeaderContainer';
 import NavBar from './styles/Header/NavBar/NavBar';
+import {CartButton} from './styles/Header/CartButton';
 
-const CartLinkWrapper = styled.div`
-  padding-top: 4em;
-  margin-right: 2em;
-  margin-left: auto;
-  cursor: pointer;
-`;
-
-const withButton = InnerComponent => props => {
-  return (
-    <CartLinkWrapper style={props.styling} onClick={props.cartHandler}>
-      <InnerComponent {...props} />
-    </CartLinkWrapper>
-  );
-};
 
 
 const HyperLinks = [
@@ -23,15 +9,6 @@ const HyperLinks = [
   { title: "about", href: "/about" },
   { title: "instagram", href: "/instagram" }
 ];
-
-const CartIcon = (props)=>{
-  return(
-    <img src={props.source}/>
-  )
-}
-
-const CartButton = withButton(CartIcon);
-
 
 
 const Header = props => (

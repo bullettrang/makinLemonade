@@ -3,10 +3,8 @@ import Page from "../components/Page";
 import Client from "shopify-buy";
 import Header from '../components/Header';
 //sometimes I need to restart nextjs to see my changes
+
 const client = Client.buildClient({
-  // storefrontAccessToken: "c6fd602fd95dcddd412fe21b7a813794",
-  // domain: "makinlemonade.myshopify.com"
-  //domain: "makinlemonade.myshopify.com"
   storefrontAccessToken: process.env.STORE_FRONT_ACCESS_TOKEN,
   domain: process.env.DOMAIN
 });

@@ -7,17 +7,10 @@ const NavWrapper = styled.div`
   margin-left: calc(15vmin);
 `;
 
-
-
 const NavBar = (props)=>{
   return(
     <NavWrapper>
       <HeaderLogo src={props.logo} />
-      {/* <RowOfLinks>
-      {props.hyperlinks.map(link => (
-          <NavLink title={link.title} href={link.href} />
-        ))}
-      </RowOfLinks> */}
       <NavLinks hyperlinks={props.hyperlinks}/>
     </NavWrapper>
   )
