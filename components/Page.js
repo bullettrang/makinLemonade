@@ -17,7 +17,7 @@ export default class Page extends Component {
     return (
       <StyledPage>
         <Meta /> {/*Uses Next's Head */}
-        <Header /> {/*Uses Next's Router, Link */}
+        {/* <Header cartHandler={this.props.cartHandler}/>  */}
         <style jsx global>{`
           * { box-sizing: border-box; margin: 0; padding: 0 }
         `}</style>

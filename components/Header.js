@@ -1,42 +1,21 @@
-import Link from "next/link";
-import styled from "styled-components";
+import HeaderContainer from '../components/styles/Header/HeaderContainer';
+import NavBar from './styles/Header/NavBar/NavBar';
+import {CartButton} from './styles/Header/CartButton';
 
-const StyledHeader = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  padding-top: 1em;
-  margin-bottom:calc(5vmin);
-`;
 
-const StyledLogo = styled.img`
-  width: 120px;
-  height: 120px;
-`;
 
-const StyledLinkWrapper = styled.div`
-  padding-top: 4em;
-  text-align: center;
-`;
-const linkStyle = {
-  color: "#76B251",
-  fontWeight:"800"
-};
+const HyperLinks = [
+  { title: "home", href: "/" },
+  { title: "about", href: "/about" },
+  { title: "instagram", href: "/instagram" }
+];
 
-const Header = () => (
-  <StyledHeader>
-    <StyledLinkWrapper>
-      <Link href="/">
-        <a style={linkStyle}>home</a>
-      </Link>
-    </StyledLinkWrapper>
-    <StyledLogo src={"/static/logo.jpg"} />
-    <StyledLinkWrapper>
-      <Link href="/about">
-        <a style={linkStyle}>about</a>
-      </Link>
-    </StyledLinkWrapper>
-  </StyledHeader>
+
+const Header = props => (
+  <HeaderContainer>
+    <NavBar hyperlinks={HyperLinks} logo={"/static/logo.jpg"}/>
+    <CartButton source={"/static/cart_major_monotone.svg"} cartHandler={props.cartHandler} styling={{width:"50px"}}/>
+  </HeaderContainer>
 );
 
 export default Header;

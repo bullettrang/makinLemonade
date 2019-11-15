@@ -1,12 +1,10 @@
 import App from "next/app"; //this wraps around all
 import Page from "../components/Page";
 import Client from "shopify-buy";
-
+import Header from '../components/Header';
 //sometimes I need to restart nextjs to see my changes
+
 const client = Client.buildClient({
-  // storefrontAccessToken: "c6fd602fd95dcddd412fe21b7a813794",
-  // domain: "makinlemonade.myshopify.com"
-  //domain: "makinlemonade.myshopify.com"
   storefrontAccessToken: process.env.STORE_FRONT_ACCESS_TOKEN,
   domain: process.env.DOMAIN
 });
@@ -22,10 +20,10 @@ class MyApp extends App {
       products: [],
       shop: {}
     };
-    console.log(props.initialState)
+    console.log(props.initialState);
   }
   componentDidMount() {
-    //create empty checkout
+    //create checkout
     this.fetchCheckout();
 
     //fetch all products,
@@ -40,7 +38,6 @@ class MyApp extends App {
       });
     });
   }
-
 
   createNewCart = () => {
     return client.checkout
@@ -79,16 +76,13 @@ class MyApp extends App {
           localStorage.removeItem("checkoutId");
           this.createNewCart();
         });
+    } else {
       // There was no checkoutId, so we'll start from scratch
       this.createNewCart();
     }
   };
 
   openCheckout = () => {
-    // client.checkout.fetch(this.state.checkout.id).then((checkout) => {
-    //   // Do something with the checkout
-    //   console.log("here is the checkout! ",checkout);
-    // });
     window.open(this.state.checkout.webUrl);
   };
 
@@ -127,8 +121,7 @@ class MyApp extends App {
   removeLineItemInCart = async lineItemId => {
     const checkoutId = this.state.checkout.id;
 
-    const res = await client.checkout
-      .removeLineItems(checkoutId, [lineItemId]);
+    const res = await client.checkout.removeLineItems(checkoutId, [lineItemId]);
     this.setState({
       checkout: res
     });
@@ -143,9 +136,10 @@ class MyApp extends App {
   render() {
     const { products, isCartOpen, checkout, client } = this.state;
     const { Component, pageProps } = this.props; //Next's App has a component prop
-    
+
     return (
       <Page>
+        <Header cartHandler={this.cartHandler}/> {/*Uses Next's Router, Link */}
         {/*Consists of Head */}
         <Component
           addVariantToCart={this.addVariantToCart}
