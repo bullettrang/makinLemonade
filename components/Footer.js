@@ -7,11 +7,12 @@ import Link from "next/link";
 
 const FooterStyled = styled.div`
   width: 100%;
-  padding: calc(5vmin);
+  padding: calc(2vmin);
   margin-top: calc(5vmin);
   display: flex;
   justify-content: space-around;
   background-color: #f5f5f5;
+  font-family: sans-serif;
 `;
 
 const SocialMedia = styled.div`
@@ -19,6 +20,20 @@ const SocialMedia = styled.div`
   flex-direction: column;
   justify-content: space-around;
   text-align: center;
+
+  h2 {
+    &::after {
+      content: "";
+      height: 3px;
+      width: 50%;
+      position: relative;
+      background: rgb(118, 178, 81);
+      display: block;
+      margin: 0 auto;
+      margin-top: calc(1vmin);
+      margin-bottom:calc(1vmin);
+    }
+  }
 `;
 
 const FootLink = styled.a`
@@ -40,7 +55,7 @@ const Footer = () => {
           target="_blank"
           rel="noopener noreferrer"
         >
-          <i class="fab fa-instagram"></i>
+          <i className="fab fa-instagram"></i>
         </FootLink>
         <FootLink
           href="https://www.facebook.com/makinlemonadeapparel/"
