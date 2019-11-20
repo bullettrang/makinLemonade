@@ -2,12 +2,31 @@ import App from "next/app"; //this wraps around all
 import Page from "../components/Page";
 import Client from "shopify-buy";
 import Header from '../components/Header';
+import {createLineItem,createUpdatedLineItem} from '../utility/lineItem'
+import {openCart,toggleCart} from '../utility/cart';
+import Footer from '../components/Footer'
 //sometimes I need to restart nextjs to see my changes
 
 const client = Client.buildClient({
   storefrontAccessToken: process.env.STORE_FRONT_ACCESS_TOKEN,
   domain: process.env.DOMAIN
 });
+
+
+//fetch from shopify buy
+//return res obj
+
+const fetchNewCart= async()=>{
+  try{
+    const res =await client.checkout.create();
+    console.log(res)
+    return res;
+  }
+  catch(error){
+    console.log(error);
+  }
+}
+
 
 class MyApp extends App {
   //next provides an App automatically, but we made our own called MyApp
@@ -18,7 +37,8 @@ class MyApp extends App {
       isCartOpen: false,
       checkout: { lineItems: [] },
       products: [],
-      shop: {}
+      shop: {},
+      error:false
     };
     console.log(props.initialState);
   }
@@ -38,18 +58,6 @@ class MyApp extends App {
       });
     });
   }
-
-  createNewCart = () => {
-    return client.checkout
-      .create()
-      .then(res => {
-        this.setState({
-          checkout: res
-        });
-        localStorage.setItem("checkoutId", res.id);
-      })
-      .catch(error => console.log(error));
-  };
 
   fetchCheckout = () => {
     let checkoutId = localStorage.getItem("checkoutId");
@@ -73,6 +81,7 @@ class MyApp extends App {
         .catch(error => {
           // While the cart ID exists, the checkout has expired.
           // So we need to clear out localStorage and create a new cart.
+          alert(error)
           localStorage.removeItem("checkoutId");
           this.createNewCart();
         });
@@ -82,16 +91,27 @@ class MyApp extends App {
     }
   };
 
+  createNewCart = async () => {
+    const res = await fetchNewCart().catch(err=>{throw Error(err)})
+    if(res){
+      this.setState({checkout:res});
+      localStorage.setItem("checkoutId",res.id)
+    }
+    else{
+      console.log('error in createNewCart');
+      this.setState({error:true})
+    }
+  };
+
+
+
   openCheckout = () => {
     window.open(this.state.checkout.webUrl);
   };
 
   addVariantToCart = (variantId, quantity) => {
-    this.setState({
-      isCartOpen: true
-    });
-
-    const lineItemsToAdd = [{ variantId, quantity: parseInt(quantity, 10) }];
+    this.setState(openCart());
+    const lineItemsToAdd = createLineItem(variantId,quantity);
     const checkoutId = this.state.checkout.id;
     return client.checkout
       .addLineItems(checkoutId, lineItemsToAdd)
@@ -105,9 +125,7 @@ class MyApp extends App {
 
   updateQuantityInCart = (lineItemId, quantity) => {
     const checkoutId = this.state.checkout.id;
-    const lineItemsToUpdate = [
-      { id: lineItemId, quantity: parseInt(quantity, 10) }
-    ];
+    const lineItemsToUpdate = createUpdatedLineItem(lineItemId,quantity);
 
     return client.checkout
       .updateLineItems(checkoutId, lineItemsToUpdate)
@@ -115,7 +133,8 @@ class MyApp extends App {
         this.setState({
           checkout: res
         });
-      });
+      })
+      .catch(err=>alert(err));
   };
 
   removeLineItemInCart = async lineItemId => {
@@ -129,7 +148,7 @@ class MyApp extends App {
 
   cartHandler = () => {
     this.setState(prevState => {
-      return { isCartOpen: !prevState.isCartOpen };
+      return toggleCart(prevState.isCartOpen)
     });
   };
 
@@ -153,6 +172,7 @@ class MyApp extends App {
           client={client}
           {...pageProps}
         />
+        <Footer/>
       </Page>
     );
   }

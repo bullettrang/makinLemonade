@@ -16,7 +16,10 @@ export default class MyDocument extends Document {
   render() {
     return (
       <html>
-        <Head>{this.props.styleTags}</Head>
+        <Head>
+          {this.props.styleTags}
+          <script src="https://kit.fontawesome.com/0f7627c973.js" crossOrigin="anonymous"></script>
+        </Head>
         <body>
           <Main />
           <NextScript />
