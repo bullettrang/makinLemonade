@@ -7,7 +7,7 @@ import {CartButton} from './styles/Header/CartButton';
 const HyperLinks = [
   { title: "home", href: "/" },
   { title: "about", href: "/about" },
-  { title: "instagram", href: "/instagram" }
+
 ];
 
 

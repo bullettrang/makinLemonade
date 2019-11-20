@@ -12,7 +12,7 @@ const NavLinks = props => {
   return (
     <RowOfLinks>
       {props.hyperlinks.map(link => (
-        <NavLink title={link.title} href={link.href} />
+        <NavLink key={link.title} title={link.title} href={link.href} />
       ))}
     </RowOfLinks>
   );

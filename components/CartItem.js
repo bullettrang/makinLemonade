@@ -2,7 +2,7 @@
 import styled from "styled-components";
 import LineItem from './styles/LineItem';
 
-const CartImage = styled.img`
+const LineImage = styled.img`
   max-width: 50px;
 `;
 
@@ -20,7 +20,7 @@ const CartItem = ({lineItem,removeLineItemInCart,updateQuantityInCart})=>{
     return(
         <LineItem key={lineItem.id}>
           {lineItem.variant.image && (
-            <CartImage src={lineItem.variant.image.src} alt={lineItem.title} />
+            <LineImage src={lineItem.variant.image.src} alt={lineItem.title} />
           )}
           <button
             className="line--delete"

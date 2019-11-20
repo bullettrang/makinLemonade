@@ -6,7 +6,9 @@
   "scripts": {
     "dev": "next",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "test:ui": "jest -c jest.config.js",
+    "test:ui:watch": "npm run test:ui -- --watch"
   },
   "keywords": [],
   "author": "",
@@ -18,5 +20,12 @@
     "react-dom": "^16.9.0",
     "shopify-buy": "^2.7.2",
     "styled-components": "^4.3.2"
+  },
+  "devDependencies": {
+    "@babel/polyfill": "^7.7.0",
+    "expect-puppeteer": "^4.3.0",
+    "jest": "^24.9.0",
+    "jest-puppeteer": "^4.3.0",
+    "puppeteer": "^2.0.0"
   }
 }

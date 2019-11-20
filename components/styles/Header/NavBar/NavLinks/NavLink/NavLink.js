@@ -16,7 +16,7 @@ const NavLink=(props)=>{
   return(
     <StyledLinkWrapper>
       <Link href={props.href}>
-        <a style={linkStyle}>{props.title}</a>
+        <a id={props.title} style={linkStyle}>{props.title}</a>
       </Link>
     </StyledLinkWrapper>
   )

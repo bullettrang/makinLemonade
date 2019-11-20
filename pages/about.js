@@ -7,7 +7,7 @@ export default function About() {
   return (
     <div>
       <Featured>
-        <h2>About Us</h2>
+        <h2 id="about-heading">About Us</h2>
       </Featured>
       <AboutWrap>
         <div>

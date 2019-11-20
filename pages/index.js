@@ -20,7 +20,7 @@ const Index = props => {
     <div>
       <LandingStyled
         backgroundImage={`url(${"/static/icecream.jpg"})`}
-      ></LandingStyled>
+      />
       {isCartOpen ? (
         <Cart
           checkout={checkout}
